@@ -1,6 +1,6 @@
-class ContractsController < ApplicationController
-   def new
-       
+class ContactsController < ApplicationController
+    def new
+        @contact = Contact.new
     end
     
     def create
