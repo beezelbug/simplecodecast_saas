@@ -4,6 +4,18 @@ class ContactsController < ApplicationController
     end
     
     def create
-        
-    end    
+        @contact = Contact.new(contact_params)
+        if @contact.save
+            flash[:success] = "Message sent."
+          redirect_to new_contact_path
+        else
+          redirect_to new_contact_path
+          flash[:danger] = "Error occurred, message has not been sent."
+        end
+    end
+    
+    private 
+        def contact_params
+          params.require(:contact).permit(:name, :email, :comments)
+        end
 end
